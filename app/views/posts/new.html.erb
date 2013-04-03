@@ -1,0 +1,10 @@
+<%= form_for @post, :url => { :action=> :create} do |p| %>
+<% @post.errors.full_messages.each do |msg| %>
+  <p><%= msg %></p>
+<% end %>
+<%= p.text_field :title %>
+<%= p.text_area :content %>
+<%= p.select :category_id, options_for_select( @categories.map {|c| [c.name, c.id.to_i]} ) %>
+<%= p.submit "I Make Post!" %>
+<% end %>
+
