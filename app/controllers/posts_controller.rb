@@ -6,12 +6,17 @@ class PostsController < ApplicationController
   end
 
   def create
+    @categories = Category.all
     @post = Post.new(params[:post])
-    if @post.save
-      redirect_to post_path(@post)
-    else
-
-      render :action => 'new'
+    respond_to do |format|
+      if @post.save
+        # redirect_to post_path(@post)
+        print "\n" * 3
+        print "foo"
+        format.js
+      else
+        render :action => 'new'
+      end
     end
   end
 

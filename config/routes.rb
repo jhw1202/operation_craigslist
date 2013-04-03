@@ -2,6 +2,7 @@ CraigslistIsCool::Application.routes.draw do
 
   resources :posts, :only => [:new, :create, :show, :index]
 
+  get '/show/:secret_url' => 'posts#show'
 
   root :to => 'posts#index'
   # The priority is based upon order of creation:

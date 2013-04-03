@@ -7,11 +7,9 @@ class Post < ActiveRecord::Base
   validates :title, :presence => true
   validates :content, :presence => true
   validates :title, :length => { minimum: 4}
-  validates :content, :length => {minimum: 50}
+  validates :content, :length => {minimum: 5}
   validates :category_id, :presence => true
-  validates :secret_url, :presence => true
-  validates :secret_url, :uniqueness => true
-  before_create :create_secret_url
+  before_save :create_secret_url
 
   def create_secret_url
     self.secret_url = SecureRandom.hex(10)
